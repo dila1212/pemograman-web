@@ -1,6 +1,5 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    session_start();
     include "koneksi.php";
     $username = $_POST['username'];
     $password = md5($_POST['password']);
@@ -14,11 +13,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $_SESSION['user'] = $row['nama_lengkap'];
         header('location:dashboard.php');
     }else{
+        session_start();
         $_SESSION['pesan'] = "username atau password anda salah!!!";
         header('location:index.php');
     }
-    
-    }else{
+}else{
     header('location:index.php');
 }
 ?>
